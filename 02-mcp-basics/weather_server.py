@@ -31,6 +31,11 @@ def get_weather(city: str) -> str:
     """Lấy thời tiết hiện tại của một thành phố."""
     return f"{city}: {_MOCK_DB.get(city, '28°C, không có dữ liệu chi tiết')}"
 
+@mcp.tool()
+def get_forecast(city: str, days: int = 3) -> str:
+    """Lấy dự báo thời tiết cho một thành phố trong N ngày tới."""
+    forecast = {k: _MOCK_DB.get(k, '28°C, không có dữ liệu chi tiết') for k in [city]}
+    return f"{city}: {_MOCK_DB.get(city, '28°C, không có dữ liệu chi tiết')}"
 
 if __name__ == "__main__":
     mcp.run()  # mặc định chạy qua stdio
